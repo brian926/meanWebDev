@@ -1,12 +1,15 @@
+// Create a new 'render' controller method
 exports.render = function(req, res) {
-	if (req.session.lastVisit) {
-		console.log(req.session.lastVisit);
-	}
+	// Set the safe user object 
+	const user = (!req.user) ? null : {
+		_id: req.user.id,
+		firstName: req.user.firstName,
+		lastName: req.user.lastName
+	};
 
-	req.session.lastVisit = new Date();
-
+	// Use the 'response' object to render the 'index' view with a 'title' and 'user' properties
 	res.render('index', {
 		title: 'Hello World',
-		userFullName: req.user ? req.user.fullName : ''
+		user: JSON.stringify(user)
 	});
 };
