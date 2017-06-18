@@ -22,8 +22,7 @@ export var MockSchemaRegistry = (function () {
         var value = this.existingElements[tagName.toLowerCase()];
         return value === void 0 ? true : value;
     };
-    MockSchemaRegistry.prototype.allKnownElementNames = function () { return Object.keys(this.existingElements); };
-    MockSchemaRegistry.prototype.securityContext = function (selector, property, isAttribute) {
+    MockSchemaRegistry.prototype.securityContext = function (tagName, property) {
         return SecurityContext.NONE;
     };
     MockSchemaRegistry.prototype.getMappedPropName = function (attrName) { return this.attrPropMapping[attrName] || attrName; };
@@ -46,10 +45,6 @@ export var MockSchemaRegistry = (function () {
         else {
             return { error: false };
         }
-    };
-    MockSchemaRegistry.prototype.normalizeAnimationStyleProperty = function (propName) { return propName; };
-    MockSchemaRegistry.prototype.normalizeAnimationStyleValue = function (camelCaseProp, userProvidedProp, val) {
-        return { error: null, value: val.toString() };
     };
     return MockSchemaRegistry;
 }());
